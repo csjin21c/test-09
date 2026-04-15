@@ -36,11 +36,11 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build --no-cache -t $ECR_REGISTORY/$ECR_REPOSITORY:$IMAGE_TAG ./nginx
-          docker build --no-cache -t $ECR_REGISTORY/$ECR_REPOSITORY:latest ./nginx
+          docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./nginx
+          docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./nginx
 
-          docker push $ECR_REGISTORY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTORY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       # AWS SSM을 통해 EC2 인스턴스에서 수행할 내용 정의
       - name: Deploy to EC2 using SSM
